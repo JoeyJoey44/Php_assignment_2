@@ -1,5 +1,4 @@
-/* 
-Color Themes:
+/* Color Themes:
 White: F5EAD9
 Black: 2C2F33
 Aqua: 008080
@@ -7,57 +6,73 @@ Aqua: 008080
 
 body {
     background: #F5EAD9;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #2C2F33;
+    transition: background-color 0.3s ease;
+    animation: fadeInBody 1s ease-in;
+}
+
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .accentText {
     color: #fc5c5c;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease;
 }
 
-.text {
-    color: #2C2F33;
-}
-
-/* Global Styles */
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Arial", sans-serif;
 }
 
-/* Navbar Styles */
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: #008080;
-    padding: 15px 20px;
+    padding: 15px 30px;
     color: #F5EAD9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: slideInTop 0.7s ease-in-out;
+}
+
+@keyframes slideInTop {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .navbar .logo {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-}
-
-.nav-links li {
-    margin: 0 15px;
+    gap: 25px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #F5EAD9;
     font-size: 18px;
-    transition: 0.3s ease-in-out;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s ease-in-out;
 }
 
 .nav-links a:hover {
-    color: #fc5c5c;
+    background: #fc5c5c;
+    color: #fff;
+    transform: scale(1.05);
 }
 
 /* Responsive Navbar */
@@ -65,148 +80,220 @@ body {
     .nav-links {
         flex-direction: column;
         text-align: right;
-    }
-    .nav-links li {
-        margin: 10px 0;
+        gap: 10px;
     }
 }
 
 /* Main Content */
 main {
     text-align: center;
-    padding: 50px;
-    background: #F5EAD9; /* Light background for the content */
-    padding-bottom: 80px; /* Ensure space for the footer */
+    padding: 60px 20px 100px 20px;
+    animation: fadeInUp 1s ease;
 }
 
-.form {
-    max-width: 400px;
-    margin: 0 auto;
-    background: #008080; /* Change background color here */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #F5EAD9; /* Change text color to white */
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.btn {
-    background: #fc5c5c;
-    color: #F5EAD9;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-.btn:hover {
-    background: #ffc1c1;
-}
-
-/* Footer Styles */
-.footer {
-    text-align: center;
-    background: #008080;
-    color: #F5EAD9;
-    padding: 15px 0;
-    position: relative; /* Adjust the position to avoid overlap */
-    width: 100%;
-    bottom: 0;
-}
-
-/* Waiting for approval styles */
-.waiting-for-approval {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: #F5EAD9; /* Match background color */
-    text-align: center;
-    font-size: 2rem;
-    color: #fc5c5c; /* Accent color */
-    font-weight: bold;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.waiting-for-approval h2 {
-    font-size: 3rem;
-    color: #fc5c5c;
-    margin: 0;
-}
-
-/* Main Content Styles */
-main {
-    text-align: center;
-    padding: 50px;
-    background: #F5EAD9; /* Light background for the content */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 #posts {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
 }
 
 #posts div {
-    background: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 8px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-    padding: 20px;
-    width: 80%; /* Adjust the width as needed */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px 30px;
+    width: 90%;
     max-width: 800px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInPost 0.6s ease forwards;
+    opacity: 0;
+}
+
+#posts div:nth-child(1) { animation-delay: 0.2s; }
+#posts div:nth-child(2) { animation-delay: 0.4s; }
+#posts div:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeInPost {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+#posts div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 #posts h2 {
-    font-size: 24px;
-    color: #2C2F33; /* Dark text color */
+    font-size: 26px;
+    color: #2C2F33;
     margin-bottom: 10px;
 }
 
 #posts p {
     font-size: 16px;
-    color: #2C2F33; /* Dark text color */
+    color: #2C2F33;
     line-height: 1.6;
     margin-bottom: 10px;
 }
 
 #posts p strong {
-    color: #008080; /* Accent color for strong text */
+    color: #008080;
 }
 
 hr {
-    border: 1px solid #F5EAD9;
-    width: 100%;
+    border: none;
+    border-top: 1px solid #F5EAD9;
     margin: 20px 0;
 }
+
+/* Read More Button */
 .read-more {
     display: inline-block;
     background-color: #fc5c5c;
     color: white;
-    padding: 8px 12px;
+    padding: 8px 14px;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
+    border-radius: 6px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+    animation: fadeInUp 0.8s ease;
 }
 
 .read-more:hover {
     background-color: #f8a3a3;
+    transform: scale(1.05);
+}
+
+/* Form Styles */
+.form {
+    max-width: 420px;
+    margin: 0 auto;
+    background: #008080;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+    animation: fadeInUp 1s ease;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    animation: fadeInUp 0.5s ease;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #F5EAD9;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #fc5c5c;
+    outline: none;
+}
+
+.btn {
+    background: #fc5c5c;
+    color: #F5EAD9;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease-in-out;
+    animation: fadeInUp 0.8s ease;
+}
+
+.btn:hover {
+    background: #ffc1c1;
+    transform: scale(1.05);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    background: #008080;
+    color: #F5EAD9;
+    padding: 20px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    font-size: 16px;
+    animation: fadeInUp 1s ease;
+}
+
+/* Waiting for Approval */
+.waiting-for-approval {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #F5EAD9;
+    text-align: center;
+    font-size: 2rem;
+    color: #fc5c5c;
+    font-weight: bold;
+    flex-direction: column;
+    gap: 20px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.waiting-for-approval h2 {
+    font-size: 3rem;
+    color: #fc5c5c;
+    margin: 0;
+    animation: fadeInUp 1s ease;
+}
+
+/* Ensures the body takes up the full height of the page */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Use flexbox for the body to push the footer down */
+body {
+    background: #F5EAD9;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #2C2F33;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This ensures the footer is at the bottom */
+    transition: background-color 0.3s ease;
+}
+
+/* Footer stays at the bottom of the page */
+.footer {
+    text-align: center;
+    background: #008080;
+    color: #F5EAD9;
+    padding: 20px 0;
+    font-size: 16px;
+    width: 100%;
 }

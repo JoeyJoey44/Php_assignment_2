@@ -9,22 +9,19 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-    <div class="logo">Assignment #2</div>
-    <ul class="nav-links">
-        <!-- Link to the posts page -->
-        <li><a href="{{ route('posts.index') }}">Post</a></li>
-        <li><a href="{{ route('loginpage.index') }}">Login</a></li>
-        <li><a href="{{ route('signoutpage.index') }}">Signout</a></li>
-
-    </ul>
-</nav>
-
+        <div class="logo">Assignment #2</div>
+        <ul class="nav-links">
+            <li><a href="{{ route('welcome.index') }}">Home</a></li>
+            <li><a href="{{ route('loginpage.index') }}">Login</a></li>
+            <li><a href="{{ route('signoutpage.index') }}">Signout</a></li>
+        </ul>
+    </nav>
 
     <!-- MAIN CONTENT -->
     <main>
-        <h1 class="accentText">Index Page</h1>
+        <h1 class="accentText">Sign Out Page</h1>
         <br></br>
-        <h5 class="posts">Articles Should Go Here</h5>
+        <h5 class="posts"></h5>
         <p class="accentText"></p>
         <div id="posts"></div>
     </main>

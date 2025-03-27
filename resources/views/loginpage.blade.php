@@ -12,7 +12,7 @@
     <div class="logo">Assignment #2</div>
     <ul class="nav-links">
         <!-- Link to the posts page -->
-        <li><a href="{{ route('posts.index') }}">Post</a></li>
+        <li><a href="{{ route('welcome.index') }}">Home</a></li>
         <li><a href="{{ route('loginpage.index') }}">Login</a></li>
         <li><a href="{{ route('signoutpage.index') }}">Signout</a></li>
 
@@ -22,9 +22,9 @@
 
     <!-- MAIN CONTENT -->
     <main>
-        <h1 class="accentText">Index Page</h1>
+        <h1 class="accentText">Log In</h1>
         <br></br>
-        <h5 class="posts">Articles Should Go Here</h5>
+        <h5 class="posts">Log In Logic On This Page</h5>
         <p class="accentText"></p>
         <div id="posts"></div>
     </main>
