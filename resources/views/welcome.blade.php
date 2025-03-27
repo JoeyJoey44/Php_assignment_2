@@ -25,6 +25,11 @@
         <h1 class="accentText">Index Page</h1>
         <br></br>
         <h5 class="posts">Articles Should Go Here</h5>
+        <ul>
+            @foreach ($articles as $article)
+                <li>{{ $article->title }} - {{ $article->content }}</li>
+            @endforeach
+        </ul>
         <p class="accentText"></p>
         <div id="posts"></div>
     </main>
