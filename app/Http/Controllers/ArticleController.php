@@ -33,7 +33,16 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+            'start_date' => 'required|date|after_or_equal:now',
+            'end_date' => 'required|date|after:start_date',
+        ]);
+
+        Article::create($validated);
+
+        return redirect()->route('posts.index')->with('success', 'Article created successfully!');
     }
 
     /**

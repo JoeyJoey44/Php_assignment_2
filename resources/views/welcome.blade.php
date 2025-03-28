@@ -25,11 +25,25 @@
         <h1 class="accentText">Index Page</h1>
         <br></br>
         <h5 class="posts">Articles Should Go Here</h5>
-        <ul>
-            @foreach ($articles as $article)
-                <li>{{ $article->title }} - {{ $article->content }}</li>
-            @endforeach
-        </ul>
+        <!-- Articles Section -->
+        @foreach ($articles as $article)
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h3 class="card-title">{{ $article->title }}</h3>
+                    <p class="card-text">{{ nl2br(e($article->content)) }}</p>
+                    <p class="text-muted">
+                        {{-- By {{ $article->author_first_name ?? 'Unknown' }} {{ $article->author_last_name ?? '' }}  --}}
+                        on {{ $article->created_at->format('F j, Y') }}
+                    </p>
+                    {{-- <form method="POST" action="{{ route('articles.destroy', $article->id) }}" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form> --}}
+                    {{-- <a href="{{ route('articles.edit', $article->id) }}" class="btn">Edit</a> --}}
+                </div>
+            </div>
+        @endforeach
         <p class="accentText"></p>
         <div id="posts"></div>
     </main>

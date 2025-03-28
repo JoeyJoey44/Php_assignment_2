@@ -43,6 +43,7 @@ Route::get('/loginpage', function () {
 })->name('loginpage.index');
 
 Route::middleware('auth')->group(function () {
+    Route::post('/article', [ArticleController::class, 'store'])->name('article.store');
     Route::get('/article', [ProfileController::class, 'edit'])->name('article.edit');
     Route::patch('/article', [ProfileController::class, 'update'])->name('article.update');
     Route::delete('/article', [ProfileController::class, 'destroy'])->name('article.destroy');
