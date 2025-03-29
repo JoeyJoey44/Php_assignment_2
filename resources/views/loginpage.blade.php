@@ -11,9 +11,7 @@
     <nav class="navbar">
     <div class="logo">Assignment #2</div>
     <ul class="nav-links">
-        <!-- Link to the posts page -->
         <li><a href="{{ route('welcome.index') }}">Home</a></li>
-        <li><a href="{{ route('loginpage.index') }}">Login</a></li>
         <li><a href="{{ route('signoutpage.index') }}">Signout</a></li>
 
     </ul>
