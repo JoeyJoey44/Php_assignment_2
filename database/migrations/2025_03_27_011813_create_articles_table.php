@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id(); // Primary key
             $table->string('title');
             $table->text('body'); // Allows HTML content
-            $table->timestamp('create_date')->useCurrent(); // Default to current timestamp
-            $table->timestamp('update_date')->useCurrent()->useCurrentOnUpdate(); // Update automatically
+            $table->timestamps();
             $table->timestamp('start_date')->nullable(); // Optional for scheduling
             $table->timestamp('end_date')->nullable(); // Optional for expiration
-            $table->string('contributor_username')->constrained()->onDelete('cascade'); // Should be an email
+            // $table->string('contributor_username')->constrained()->onDelete('cascade'); // Should be an email
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Foreign key
         });
     }
 

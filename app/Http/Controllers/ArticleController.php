@@ -22,7 +22,8 @@ class ArticleController extends Controller
 
     public function posts(string $user_id)
     {
-        Auth::id();
+        $articles = Article::where('user_id', $user_id)->latest('updated_at')->get();
+        return $articles;
     }
 
     /**
@@ -45,6 +46,8 @@ class ArticleController extends Controller
             'end_date' => 'required|date|after:start_date',
         ]);
 
+        $validated['user_id'] = Auth::id();
+
         Article::create($validated);
 
         return redirect()->route('posts.index')->with('success', 'Article created successfully!');
@@ -63,9 +66,8 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        return view('article.edit', [
-            'id' => $id,
-        ]);
+        $article = Article::findOrFail($id); // Retrieve the article or throw a 404 error
+        return view('article.edit', compact('article')); // Pass the article to the view
     }
 
     /**
