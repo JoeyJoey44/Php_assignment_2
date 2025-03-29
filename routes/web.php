@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrgController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminMiddleware;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -61,7 +62,7 @@ Route::middleware('auth')->group(function () {
 
 Route::resource("/org", OrgController::class )->middleware(['auth']);
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::post('/admin/approve/{id}', [AdminController::class, 'approve'])->name('admin.approve');
     Route::post('/admin/promote/{id}', [AdminController::class, 'promote'])->name('admin.promote');
