@@ -22,7 +22,8 @@ class ArticleController extends Controller
 
     public function posts(string $user_id)
     {
-        Auth::id();
+        $articles = Article::where('user_id', $user_id)->latest('updated_at')->get();
+        return $articles;
     }
 
     /**
@@ -44,6 +45,8 @@ class ArticleController extends Controller
             'start_date' => 'required|date|after_or_equal:now',
             'end_date' => 'required|date|after:start_date',
         ]);
+
+        $validated['user_id'] = Auth::id();
 
         Article::create($validated);
 

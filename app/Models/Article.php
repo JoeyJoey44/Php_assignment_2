@@ -14,5 +14,6 @@ class Article extends Model
         'body',
         'start_date',
         'end_date',
+        'user_id',
     ];
 }

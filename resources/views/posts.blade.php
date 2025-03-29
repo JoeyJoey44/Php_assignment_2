@@ -23,13 +23,13 @@
     <main>
         <h1 class="accentText">Posts Page</h1>
         <h2 class="text">Write a New Article</h2>
-        <form method="POST" action="{{ route('article.store') }}" class="form mb-4">
+        <form method="post" action="{{ route('article.store') }}" class="form mb-4">
             @csrf
             <div class="form-group">
                 <input type="text" class="form-control" name="title" placeholder="Article Title" required>
             </div>
             <div class="form-group">
-                <textarea class="form-control" name="content" placeholder="Write your article here..." required></textarea>
+                <textarea class="form-control" name="body" placeholder="Write your article here..." required></textarea>
             </div>
             <div class="form-group">
                 <label for="start_date">Start Date:</label>
@@ -44,7 +44,7 @@
         <br></br>
         <h5 class="posts">Posts Should Go Here</h5>
         <!-- Articles Section -->
-        {{-- @foreach ($articles as $article)
+        @foreach ($articles as $article)
             <div class="card mb-3">
                 <div class="card-body">
                     <h3 class="card-title">{{ $article->title }}</h3>
@@ -54,7 +54,7 @@
                     </p>
                 </div>
             </div>
-        @endforeach --}}
+        @endforeach
         
         <p class="accentText"></p>
         <div id="posts"></div>
