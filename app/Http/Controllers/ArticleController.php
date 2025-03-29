@@ -20,6 +20,11 @@ class ArticleController extends Controller
         // return view("articles.index", ['articles' => $articles]);
     }
 
+    public function posts(string $user_id)
+    {
+        Auth::id();
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -33,7 +38,16 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+            'start_date' => 'required|date|after_or_equal:now',
+            'end_date' => 'required|date|after:start_date',
+        ]);
+
+        Article::create($validated);
+
+        return redirect()->route('posts.index')->with('success', 'Article created successfully!');
     }
 
     /**
@@ -49,7 +63,9 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('article.edit', [
+            'id' => $id,
+        ]);
     }
 
     /**
@@ -57,7 +73,17 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+            'start_date' => 'required|date|after_or_equal:now',
+            'end_date' => 'required|date|after:start_date',
+        ]);
+
+        $article = Article::findOrFail($id);
+        $article->update($validated);
+
+        return redirect()->route('posts.index')->with('success', 'Article updated successfully!');
     }
 
     /**
@@ -65,6 +91,9 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+        $article->delete();
+
+        return redirect()->route('posts.index')->with('success', 'Article deleted successfully!');
     }
 }
