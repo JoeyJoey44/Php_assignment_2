@@ -17,15 +17,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route For posts.blade.php
-Route::get('/posts', function () {
-    return view('posts');  
-})->name('posts.index');
-
-// // Route For welcome.blade.php
-// Route::get('/welcome', function () {
-//     return view('welcome');  
-// })->name('welcome.index');
+// // Route For posts.blade.php
+// Route::get('/posts', function () {
+//     return view('posts');  
+// })->name('posts.index');
 
 Route::get('/welcome', function () {
     $articles = app(App\Http\Controllers\ArticleController::class)->index();
@@ -43,10 +38,18 @@ Route::get('/loginpage', function () {
 })->name('loginpage.index');
 
 Route::middleware('auth')->group(function () {
+
+    // When authentication works use this isntead for posts
+    Route::get('/posts', function () {
+        $userId = auth()->id(); // Get the authenticated user's ID
+        $articles = app(App\Http\Controllers\ArticleController::class)->posts($userId);
+        return view('posts', ['articles' => $articles]);  
+    })->middleware(['auth'])->name('posts.index');
+
     Route::post('/article', [ArticleController::class, 'store'])->name('article.store');
-    Route::get('/article', [ProfileController::class, 'edit'])->name('article.edit');
-    Route::patch('/article', [ProfileController::class, 'update'])->name('article.update');
-    Route::delete('/article', [ProfileController::class, 'destroy'])->name('article.destroy');
+    Route::get('/article/{article}', [ArticleController::class, 'edit'])->name('article.edit');
+    Route::patch('/article/{article}', [ArticleController::class, 'update'])->name('article.update');
+    Route::delete('/article/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
 }); // needs work to properly implement editing and deleting articles
 
 Route::middleware('auth')->group(function () {
