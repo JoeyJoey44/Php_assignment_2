@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
         return view('posts', ['articles' => $articles]);  
     })->middleware(['auth'])->name('posts.index');
 
-    Route::post('/article', [ArticleController::class, 'store'])->name('article.store');
+    Route::post('/posts', [ArticleController::class, 'store'])->name('article.store');
     Route::get('/article/{article}', [ArticleController::class, 'edit'])->name('article.edit');
     Route::patch('/article/{article}', [ArticleController::class, 'update'])->name('article.update');
     Route::delete('/article/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');

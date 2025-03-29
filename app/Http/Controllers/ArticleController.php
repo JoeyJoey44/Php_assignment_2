@@ -66,9 +66,8 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        return view('article.edit', [
-            'id' => $id,
-        ]);
+        $article = Article::findOrFail($id); // Retrieve the article or throw a 404 error
+        return view('article.edit', compact('article')); // Pass the article to the view
     }
 
     /**
