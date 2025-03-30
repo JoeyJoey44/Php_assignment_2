@@ -15,8 +15,14 @@ class ArticleController extends Controller
      */
     public function index()
     {
+
+        // Get the current date and time in PST
+        $currentDate = now()->setTimezone('America/Los_Angeles');
+
         // Fetch all articles with the user's first_name and last_name
-        $articles = Article::with('user:id,first_name,last_name,email')->get();
+        $articles = Article::with('user:id,first_name,last_name,email')
+            ->where('start_date', '<=', $currentDate)
+            ->where('end_date', '>=', $currentDate)->get();
 
         return $articles;
     }
@@ -26,14 +32,9 @@ class ArticleController extends Controller
         $user = User::findOrFail($user_id);
         $contributor_username = $user->email;
 
-        // Get the current date and time in PST
-        $currentDate = now()->setTimezone('America/Los_Angeles');
-
         // Fetch articles where the current date is within the start_date and end_date range
         $articles = Article::with('user:id,first_name,last_name,email') // Eager load user's first and last name
             ->where('contributor_username', $contributor_username)
-            ->where('start_date', '<=', $currentDate)
-            ->where('end_date', '>=', $currentDate)
             ->latest('created_at')
             ->get();
 
