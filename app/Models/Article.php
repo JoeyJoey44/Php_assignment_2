@@ -14,11 +14,17 @@ class Article extends Model
         'body',
         'start_date',
         'end_date',
-        'user_id',
+        'contributor_username',
     ];
 
     protected $casts = [
         'start_date' => 'datetime',
         'end_date' => 'datetime',
     ];
+
+    // Define the relationship with the User model
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'contributor_username', 'email');
+    }
 }

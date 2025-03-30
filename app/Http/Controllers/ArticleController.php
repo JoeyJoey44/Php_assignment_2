@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class ArticleController extends Controller
@@ -14,15 +15,28 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return Article::all(); // Fetch all articles
-        // echo(Auth::id());
-        // $articles = Article::where('user_id', Auth::id())->latest('updated_at')->get();
-        // return view("articles.index", ['articles' => $articles]);
+        // Fetch all articles with the user's first_name and last_name
+        $articles = Article::with('user:id,first_name,last_name,email')->get();
+
+        return $articles;
     }
 
     public function posts(string $user_id)
     {
-        $articles = Article::where('user_id', $user_id)->latest('updated_at')->get();
+        $user = User::findOrFail($user_id);
+        $contributor_username = $user->email;
+
+        // Get the current date and time in PST
+        $currentDate = now()->setTimezone('America/Los_Angeles');
+
+        // Fetch articles where the current date is within the start_date and end_date range
+        $articles = Article::with('user:id,first_name,last_name,email') // Eager load user's first and last name
+            ->where('contributor_username', $contributor_username)
+            ->where('start_date', '<=', $currentDate)
+            ->where('end_date', '>=', $currentDate)
+            ->latest('created_at')
+            ->get();
+
         return $articles;
     }
 
@@ -46,7 +60,8 @@ class ArticleController extends Controller
             'end_date' => 'required|date|after:start_date',
         ]);
 
-        $validated['user_id'] = Auth::id();
+        // Automatically set the contributor_username to the authenticated user's email
+        $validated['contributor_username'] = Auth::user()->email;
 
         Article::create($validated);
 
@@ -58,7 +73,8 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $article = Article::with('user:id,first_name,last_name,email')->findOrFail($id); // Retrieve the article with user details
+        return view('article.show', compact('article')); // Pass the article to the view
     }
 
     /**

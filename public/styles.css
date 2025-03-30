@@ -297,3 +297,87 @@ body {
     font-size: 16px;
     width: 100%;
 }
+
+/* Articles Container */
+.articles-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 40px 20px;
+}
+
+/* Individual Article Card */
+.article {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px 30px;
+    width: 90%;
+    max-width: 800px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInPost 0.6s ease forwards;
+    opacity: 0;
+}
+
+.article:nth-child(1) { animation-delay: 0.2s; }
+.article:nth-child(2) { animation-delay: 0.4s; }
+.article:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeInPost {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Article Title */
+.article h2 {
+    font-size: 26px;
+    color: #2C2F33;
+    margin-bottom: 10px;
+}
+
+/* Article Text */
+.article p {
+    font-size: 16px;
+    color: #2C2F33;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Article Meta Info */
+.article-meta {
+    font-size: 14px;
+    color: #008080;
+    font-style: italic;
+}
+
+/* Button Container */
+.article-buttons {
+    display: flex;
+    justify-content: center; /* Centers buttons horizontally */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Read More Button (Reuses Existing Styles) */
+.read-more {
+    display: inline-block;
+    background-color: #fc5c5c;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+    animation: fadeInUp 0.8s ease;
+}
+
+.read-more:hover {
+    background-color: #f8a3a3;
+    transform: scale(1.05);
+}

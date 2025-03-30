@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
 
 Route::resource("/org", OrgController::class )->middleware(['auth']);
 
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('article.show');
+
 Route::middleware(['auth', ApprovalMiddleware::class])->group(function () {
     // When authentication works use this isntead for posts
     Route::get('/posts', function () {
