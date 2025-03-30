@@ -15,27 +15,44 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // 'first_name',
+        // 'last_name',
+        // 'email',
+        // 'password',
+        // 'role', 
+        // 'is_approved',
         //
         $pwd = 'P@$$w0rd';
         // Seed user 1
-        $email = 'aa@aa.aa';
+        $email = 'a@a.a';
         $user = User::where('email', '=', $email)->first();
         if ($user === null) {
             $user = User::create([
-                'name' => 'aa',
+                'first_name' => 'a',
+                'last_name' => 'a',
                 'email' => $email,
                 'password' => Hash::make($pwd),
+                'role' => 'Admin',
+                'is_approved' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
 
         // Seed user 2
-        $email = 'bb@bb.bb';
+        $email = 'b@b.b';
         $user = User::where('email', '=', $email)->first();
         if ($user === null) {
             $user = User::create([
-                'name' => 'bb',
+                'first_name' => 'b',
+                'last_name' => 'b',
                 'email' => $email,
                 'password' => Hash::make($pwd),
+                'role' => 'Contributor',
+                'is_approved' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
     }

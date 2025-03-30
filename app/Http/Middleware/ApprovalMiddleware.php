@@ -15,7 +15,7 @@ class ApprovalMiddleware
     {
         // Check if the user is authenticated and approved
         if (!Auth::check() || !Auth::user()->is_approved) {
-            //abort(403, 'Unauthorized access, you are not approved yet.');
+            abort(403, 'Unauthorized access, you are not approved yet.');
         }
 
         return $next($request);

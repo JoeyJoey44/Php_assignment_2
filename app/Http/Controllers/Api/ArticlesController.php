@@ -12,7 +12,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return Article::all();
+        return Article::with('user:id,first_name,last_name,email')->get();
     }
 
 }
