@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ApprovalMiddleware;
 
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -30,6 +31,16 @@ Route::get('/welcome', function () {
     return view('welcome', ['articles' => $articles]);
 })->name('welcome.index'); // Updated route for '/welcome'
 
+// Route For registerPage.blade.php
+Route::get('/register', function () {
+    return view('auth/register');  
+})->name('register.index');
+
+// Route For login.blade.php
+Route::get('/login', function () {
+    return view('login');  
+})->name('login.index');
+
 // Route For signoutpage.blade.php
 Route::get('/signoutpage', function () {
     return view('signoutpage');  
@@ -37,8 +48,13 @@ Route::get('/signoutpage', function () {
 
 // Route For loginpage.blade.php
 Route::get('/loginpage', function () {
-    return view('loginpage');  
+    return view('auth/login');
 })->name('loginpage.index');
+
+// Route For loginpage.blade.php
+Route::get('/index', function () {
+    return view('/index');
+})->name('index.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

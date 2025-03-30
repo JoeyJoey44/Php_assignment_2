@@ -1,0 +1,182 @@
+/* Body Styles */
+body {
+    background: #F5EAD9;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #2C2F33;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    transition: background-color 0.3s ease;
+    animation: fadeInBody 1s ease-in;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #008080;
+    width: 100%;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Avoids overflow */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar .logo a {
+    color: #F5EAD9;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .nav-links li {
+    margin-left: 20px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #F5EAD9;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #fc5c5c;
+}
+
+/* Form Container */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 80px; /* To avoid overlapping with the navbar */
+    flex-grow: 1; /* Allow the container to grow and push content down if needed */
+    padding: 20px; /* Add padding to avoid edges touching the viewport */
+    box-sizing: border-box; /* Ensures padding does not overflow */
+}
+
+/* Form Styles */
+.form {
+    max-width: 420px;
+    width: 100%; /* Ensure the form does not exceed the container's width */
+    background: #008080;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+    animation: fadeInUp 1s ease;
+    box-sizing: border-box; /* Prevent overflow due to padding */
+}
+
+/* Heading Styling */
+.accentText {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #F5EAD9;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box; /* Ensures padding does not cause overflow */
+}
+
+.form-group input:focus {
+    border-color: #fc5c5c;
+    outline: none;
+}
+
+/* Button Styling */
+.btn {
+    background: #fc5c5c;
+    color: #F5EAD9;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease-in-out;
+    width: 100%; /* Make the button span the width of the form */
+}
+
+.btn:hover {
+    background: #ffc1c1;
+    transform: scale(1.05);
+}
+
+/* Forgot Password Link */
+.forgot-link {
+    color: #F5EAD9;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #ffc1c1;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #008080;
+    color: #F5EAD9;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+/* Session Message */
+.session-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+/* Input Error Message */
+.input-error {
+    color: #f8d7da;
+    background: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}

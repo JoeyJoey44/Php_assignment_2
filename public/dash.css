@@ -1,0 +1,126 @@
+/* General Styling */
+body {
+    background: #F5EAD9; /* Light Beige background */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #2C2F33; /* Dark Gray text color */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #008080; /* Teal background */
+    width: 100%;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box; /* Avoids overflow */
+    padding-left: 20px;  /* Adds padding on left */
+    padding-right: 20px; /* Adds padding on right */
+}
+
+/* Navbar Logo Styling */
+.navbar .logo {
+    font-size: 1.5rem;
+    color: #F5EAD9; /* Light Beige color */
+    text-align: center; /* Centers the logo */
+}
+
+/* Navbar Link List Styling */
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .nav-links li {
+    margin-left: 20px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #F5EAD9; /* Light Beige */
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #fc5c5c; /* Soft Red on hover */
+}
+
+/* Main Content Container */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Makes the container take up remaining space */
+    width: 100%;
+    padding-top: 80px; /* To avoid overlapping with the navbar */
+    box-sizing: border-box; /* Prevent overflow */
+}
+
+/* Box around content */
+.bg-white {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Content Padding */
+.p-6 {
+    padding: 24px;
+}
+
+/* Text styling */
+.text-xl {
+    font-size: 24px;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.text-gray-900 {
+    color: #333333; /* Dark Gray for text */
+}
+
+/* Button Styling */
+.btn {
+    background: #fc5c5c; /* Soft Red button */
+    color: #F5EAD9; /* Light Beige */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease-in-out;
+    width: 100%; /* Full width button */
+}
+
+.btn:hover {
+    background: #FFD700; /* Lighter Yellow on hover */
+    transform: scale(1.05);
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #008080; /* Teal background */
+    color: #F5EAD9; /* Light Beige text */
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    box-sizing: border-box; /* Avoids overflow */
+}

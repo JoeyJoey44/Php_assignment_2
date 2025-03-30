@@ -14,7 +14,7 @@
         <!-- Link to the posts page -->
         <li><a href="{{ route('posts.index') }}">Post</a></li>
         <li><a href="{{ route('loginpage.index') }}">Login</a></li>
-        <li><a href="{{ route('signoutpage.index') }}">Signout</a></li>
+        <li><a href="{{ route('signoutpage.index') }}">Register</a></li>
 
     </ul>
 </nav>
