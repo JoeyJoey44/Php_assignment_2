@@ -23,8 +23,6 @@
     <!-- MAIN CONTENT -->
     <main>
         <h1 class="accentText">Index Page</h1>
-        <br></br>
-        <h5 class="posts">Articles Should Go Here</h5>
         <!-- Articles Section -->
         <section class="articles-container">
             @foreach ($articles as $article)

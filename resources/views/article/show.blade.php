@@ -31,6 +31,9 @@
                 {!! nl2br(e($article->body)) !!}
             </div>
         </div>
+
+        <br><br>
+        <a href="{{ route('home') }}" class="read-more">Back</a>
     </main>
 
     <!-- Footer -->

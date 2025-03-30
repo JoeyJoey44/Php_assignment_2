@@ -30,6 +30,10 @@
                 </div>
             </div>
         </div>
+
+        <br>
+
+        <a href="{{ route('home') }}" class="read-more">Back</a>
     </main>
 
     <!-- Footer -->

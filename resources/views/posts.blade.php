@@ -22,9 +22,10 @@
     <!-- MAIN CONTENT -->
     <main>
         <h1 class="accentText">Posts Page</h1>
-        <h2 class="text">Write a New Article</h2>
         <form method="post" action="{{ route('article.store') }}" class="form mb-4">
             @csrf
+            <h2 class="text">Write a New Article</h2>
+            <br>
             <div class="form-group">
                 <input type="text" class="form-control" name="title" placeholder="Article Title" required>
             </div>
@@ -42,7 +43,6 @@
             <button type="submit" name="create" class="btn">Publish</button>
         </form>
         <br></br>
-        <h5 class="posts">Posts Should Go Here</h5>
         <!-- Articles Section -->
         <section class="articles-container">
             @foreach ($articles as $article)
@@ -61,10 +61,7 @@
             @endforeach
         </section>
         
-        
-        
-        <p class="accentText"></p>
-        <div id="posts"></div>
+        <a href="{{ route('home') }}" class="read-more">Back</a>
     </main>
 
     <script>
