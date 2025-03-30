@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar & Footer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('styles.css') }}">
+    
 </head>
 
 <body>
@@ -20,9 +22,9 @@
     </nav>
 
     <!-- MAIN CONTENT -->
-    <main>
-        <div class="article-details">
-            <h1>{{ $article->title }}</h1>
+    <main class="container mt-5">
+        <div class="article-details p-4 rounded shadow-sm">
+            <h1 class="display-4">{{ $article->title }}</h1>
             <p><strong>By:</strong> {{ $article->user->first_name ?? 'Unknown' }} {{ $article->user->last_name ?? '' }}</p>
             <p><strong>Published On:</strong> {{ $article->created_at->format('F j, Y') }}</p>
             <p><strong>Start Date:</strong> {{ $article->start_date->format('F j, Y g:i A') }}</p>
@@ -32,8 +34,8 @@
             </div>
         </div>
 
-        <br><br>
-        <a href="{{ route('home') }}" class="read-more">Back</a>
+        <br>
+        <a href="{{ route('home') }}" class="btn btn-primary mt-4">Back</a>
     </main>
 
     <!-- Footer -->
