@@ -22,9 +22,10 @@
     <!-- MAIN CONTENT -->
     <main>
         <h1 class="accentText">Posts Page</h1>
-        <h2 class="text">Write a New Article</h2>
         <form method="post" action="{{ route('article.store') }}" class="form mb-4">
             @csrf
+            <h2 class="text">Write a New Article</h2>
+            <br>
             <div class="form-group">
                 <input type="text" class="form-control" name="title" placeholder="Article Title" required>
             </div>
@@ -42,22 +43,25 @@
             <button type="submit" name="create" class="btn">Publish</button>
         </form>
         <br></br>
-        <h5 class="posts">Posts Should Go Here</h5>
         <!-- Articles Section -->
-        @foreach ($articles as $article)
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h3 class="card-title">{{ $article->title }}</h3>
-                    <p class="card-text">{{ nl2br(e($article->content)) }}</p>
-                    <p class="text-muted">
+        <section class="articles-container">
+            @foreach ($articles as $article)
+                <div class="article">
+                    <h2>{{ $article->title }}</h2>
+                    <p class="article-meta">
+                        By {{ $article->user->first_name ?? 'Unknown' }} {{ $article->user->last_name ?? '' }}
                         on {{ $article->created_at->format('F j, Y') }}
                     </p>
+                    <p>{{ Str::limit($article->body, 100) }}</p>
+                    <div class="article-buttons">
+                        <a href="{{ route('article.show', $article->id) }}" class="read-more">More</a>
+                        <a href="{{ route('article.edit', $article->id) }}" class="read-more">Edit</a>
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </section>
         
-        <p class="accentText"></p>
-        <div id="posts"></div>
+        <a href="{{ route('home') }}" class="read-more">Back</a>
     </main>
 
     <script>
