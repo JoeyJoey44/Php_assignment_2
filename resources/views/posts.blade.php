@@ -63,12 +63,15 @@
     <script>
         // Get the current date and time
         const now = new Date();
-        const formattedNow = now.toISOString().slice(0, 16); // Format as 'YYYY-MM-DDTHH:mm'
+        const formattedNow = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}T${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
     
         // Set the minimum value for the start_date to the current date and time
         const startDateInput = document.getElementById('start_date');
         const endDateInput = document.getElementById('end_date');
         startDateInput.min = formattedNow;
+
+        // Set the initial minimum value for the end_date to match the start_date's minimum
+        endDateInput.min = formattedNow;
     
         // Ensure the end_date is always after the start_date
         startDateInput.addEventListener('change', () => {
@@ -78,11 +81,13 @@
             // If the selected start_date is earlier than the current time, reset it to the current time
             if (startDate < now) {
                 alert('Start date and time cannot be in the past.');
+                now = new Date();
+                formattedNow = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}T${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
                 startDateInput.value = formattedNow;
             }
     
             // Update the minimum value for the end_date
-            const formattedStartDate = startDate.toISOString().slice(0, 16);
+            const formattedStartDate = `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, '0')}-${String(startDate.getDate()).padStart(2, '0')}T${String(startDate.getHours()).padStart(2, '0')}:${String(startDate.getMinutes()).padStart(2, '0')}`;
             endDateInput.min = formattedStartDate;
         });
     
@@ -94,6 +99,26 @@
             if (endDate <= startDate) {
                 alert('End date must be after the start date.');
                 endDateInput.value = ''; // Clear the invalid end_date
+            }
+        });
+
+        document.querySelector('form').addEventListener('submit', (event) => {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+            const now = new Date();
+
+            // Check if the start_date is in the past
+            if (startDate < now) {
+                alert('Start date and time cannot be in the past.');
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+
+            // Check if the end_date is before or equal to the start_date
+            if (endDate <= startDate) {
+                alert('End date must be after the start date.');
+                event.preventDefault(); // Prevent form submission
+                return;
             }
         });
     </script>

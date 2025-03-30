@@ -42,7 +42,7 @@ class ArticleController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'body' => 'required|string',
-            'start_date' => 'required|date|after_or_equal:now',
+            'start_date' => 'required|date|after_or_equal:'.now()->setTimezone('America/Los_Angeles')->toDateTimeString(),
             'end_date' => 'required|date|after:start_date',
         ]);
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\OrgController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\ApprovalMiddleware;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -40,27 +41,26 @@ Route::get('/loginpage', function () {
 })->name('loginpage.index');
 
 Route::middleware('auth')->group(function () {
-
-    // When authentication works use this isntead for posts
-    Route::get('/posts', function () {
-        $userId = auth()->id(); // Get the authenticated user's ID
-        $articles = app(App\Http\Controllers\ArticleController::class)->posts($userId);
-        return view('posts', ['articles' => $articles]);  
-    })->middleware(['auth'])->name('posts.index');
-
-    Route::post('/posts', [ArticleController::class, 'store'])->name('article.store');
-    Route::get('/article/{article}', [ArticleController::class, 'edit'])->name('article.edit');
-    Route::patch('/article/{article}', [ArticleController::class, 'update'])->name('article.update');
-    Route::delete('/article/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
-}); // needs work to properly implement editing and deleting articles
-
-Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::resource("/org", OrgController::class )->middleware(['auth']);
+
+Route::middleware(['auth', ApprovalMiddleware::class])->group(function () {
+    // When authentication works use this isntead for posts
+    Route::get('/posts', function () {
+        $userId = auth()->id(); // Get the authenticated user's ID
+        $articles = app(App\Http\Controllers\ArticleController::class)->posts($userId);
+        return view('posts', ['articles' => $articles]);  
+    })->name('posts.index');
+    
+    Route::post('/posts', [ArticleController::class, 'store'])->name('article.store');
+    Route::get('/article/{article}', [ArticleController::class, 'edit'])->name('article.edit');
+    Route::patch('/article/{article}', [ArticleController::class, 'update'])->name('article.update');
+    Route::delete('/article/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
+});
 
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
